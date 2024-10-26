@@ -1,0 +1,7 @@
+* Tunnel successfully started
+
+* NOTE: Please do not close this terminal as this process must stay alive for the tunnel to be accessible ...
+
+! The service/ingress airflow-service requires privileged ports to be exposed: [80]
+* sudo permission will be asked for it.
+* Starting tunnel for service airflow-service.

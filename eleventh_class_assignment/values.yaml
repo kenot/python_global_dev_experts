@@ -1,0 +1,43 @@
+controller:
+  # Configure Jenkins Master (Controller)
+  image:
+    registry: "docker.io"
+    repository: "jenkins/jenkins"
+    tag: "lts"
+    pullPolicy: "Always"
+  installPlugins:
+    - kubernetes:latest
+    - workflow-aggregator:latest
+    - workflow-job:latest
+    - credentials-binding:latest
+    - pipeline-stage-view:latest
+    - pipeline-model-definition:latest
+    - git:latest
+  persistence:
+    enabled: true
+    storageClass: "standard"
+    size: "8Gi"
+  serviceType: NodePort
+  admin:
+    username: admin
+    password: admin_password@_123
+
+agent:
+  enabled: true
+  # Customize Agent Configuration
+  image:
+    registry: "docker.io"
+    repository: "jenkins/inbound-agent"
+    tag: "4.3-4"
+    pullPolicy: "Always"
+  replicas: 2
+  resources:
+    limits:
+      cpu: "500m"
+      memory: "512Mi"
+    requests:
+      cpu: "250m"
+      memory: "256Mi"
+
+rbac:
+  create: true
